@@ -35,8 +35,14 @@ function plusMinus(arr, n) {
 		}else if(val == 0){
 			count[2]++
 		}
-	}
-	
+    }
+    var result = [0, 0, 0]
+    for (i in count) {
+        result[i] = count[i]/n
+    }
+    ws.write(result.join(' ') + '\n');
+
+    ws.end();
 
 }
 
@@ -48,8 +54,6 @@ function main() {
 
     plusMinus(arr, n);
 
-    ws.write(result.join(' ') + '\n');
 
-    ws.end();
 
 }
