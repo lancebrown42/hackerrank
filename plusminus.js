@@ -26,23 +26,31 @@ function readLine() {
 
 // Complete the plusMinus function below.
 function plusMinus(arr, n) {
+	const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 	var count = [0,0,0]
-	for (val in arr){
-		if (val > 0){
+	//ws.write(arr.join(' '))
+	for (var val in arr){
+		//ws.write(val + '\n')
+		if (arr[val] > 0){
 			count[0]++
-		}else if(val < 0){
+		}else if(arr[val] < 0){
 			count[1]++
-		}else if(val == 0){
+		}else if(arr[val] == 0){
 			count[2]++
 		}
     }
     var result = [0, 0, 0]
-    for (i in count) {
+    for (var i = 0; i < count.length; i++) {
         result[i] = count[i]/n
     }
-    ws.write(result.join(' ') + '\n');
-
-    ws.end();
+	for (var i = 0; i < result.length; i++){
+	    ws.write(result[i] + '\n');
+	}
+	// ws.write("counts")
+	// for (var i = 0; i < count.length; i++){
+	//     ws.write(count[i] + '\n');
+	// }
+	    ws.end();
 
 }
 
@@ -50,7 +58,6 @@ function main() {
     const n = parseInt(readLine(), 10);
 
     const arr = readLine().split(' ').map(arrTemp => parseInt(arrTemp, 10));
-    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
     plusMinus(arr, n);
 
